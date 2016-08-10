@@ -1,0 +1,55 @@
+<?php
+
+namespace PositiveDayBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Post
+ *
+ * @ORM\Table(name="post")
+ * @ORM\Entity(repositoryClass="PositiveDayBundle\Repository\PostRepository")
+ */
+class Post
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="content", type="text")
+     */
+    private $content;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime")
+     */
+    private $date;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="note", type="integer")
+     */
+    private $note;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PositiveDayBundle\Entity\User", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PositiveDayBundle\Entity\Comment", mappedBy="post")
+     */
+    private $coms;
+}

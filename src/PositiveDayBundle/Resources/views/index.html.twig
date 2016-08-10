@@ -1,0 +1,44 @@
+{% extends "PositiveDayBundle::layout.html.twig" %}
+
+{% block body %}
+
+{% for flashMessage in app.session.flashbag.get('success') %}
+	<div class="alert alert-success alert-dismissible col-md-10 col-md-offset-1" role="alert">
+	    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	    <strong>Succes </strong>{{ flashMessage }}
+	</div>
+{% endfor %}
+<div class='col-md-12'>
+	{% for post in last %}
+		<div class='col-md-6 col-md-offset-3 post'>
+			<p>Date: {{post.date | date("d/m/Y") }}</p>
+			<p>{{post.content}}</p>			
+			<div class="col-md-6"><p>Note: {{post.note}}</p></div>
+			{# <div class="col-md-6"><p class="pull-right">NB Com: <span class="badge">{{post.nbCom}}</span></p></div> #}
+			{% for com in post.coms%}
+				<div class='col-md-10 col-md-offset-1 com'>		
+					<div class="col-md-6"><p>{{com.user}}</p></div>
+					<div class="col-md-6"><p class="pull-right">{{com.date| date("d/m/Y") }}</p></div>
+					<div class="col-md-12"><p>{{com.content}}</p></div>
+				</div>		
+			{% endfor %}
+			<form action="{{ path("add_com", {'id': post.id}) }}" method="post">
+			    <div class='col-md-12'>
+				    <input class='comment' type="text"  name="comment" required="required" autocomplete="off">
+				</div>
+				<div class='col-md-12'>
+			    	<input type="submit" name="Envoyer" value="Envoyer" class="pull-right">
+				</div>
+			</form>
+		</div>
+	{% endfor %}
+</div>
+{% if validate_date != 0 %}
+<div class="col-md-12">
+	{{ form_start(form, {'method': 'post', 'action': path('index'), 'attr': {'class': 'send'}}) }}
+	{{ form_widget(form) }}
+	{{ form_end(form) }}
+</div>
+{% endif %}
+
+{% endblock body %}

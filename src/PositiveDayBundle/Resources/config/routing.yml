@@ -1,0 +1,31 @@
+login:
+    path:    /login
+    defaults: {_controller:PositiveDayBundle:Security:login}
+
+login_check:
+    path:    /login_check
+    defaults: {_controller:PositiveDayBundle:Security:check}
+
+logout:
+    path:    /logout
+    defaults: {_controller:PositiveDayBundle:Security:logout}
+
+register:
+    path:    /register/
+    defaults: {_controller:PositiveDayBundle:Registration:register}
+
+confirm:
+    path:    /confirm
+    defaults: {_controller:PositiveDayBundle:Registration:confirm}
+
+confirmed:
+    path:    /confirmed
+    defaults: {_controller:PositiveDayBundle:Registration:confirmed}
+
+index:
+    path:     /
+    defaults: { _controller:PositiveDayBundle:Default:index }
+
+add_com:
+    path:     /addcom/{id}
+    defaults: { _controller:PositiveDayBundle:Default:addcom }

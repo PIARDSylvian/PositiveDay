@@ -1,0 +1,20 @@
+/*------------------Index------------------*/
+.post{
+	background-color: #ddd;
+	padding:10px;
+	margin-bottom: 5px;
+}
+
+.com{
+	background-color: #aaa;
+	margin-top:5px;
+	margin-bottom:5px;
+	padding: 10px;
+	border:solid 1px #777;
+	border-radius: 5px;
+}
+
+.comment{
+	background-color: #eee;
+	width: 100%;
+}
